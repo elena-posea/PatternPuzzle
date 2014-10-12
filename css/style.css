@@ -1,0 +1,37 @@
+.mainBoardClass, th, td {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0px;
+}
+
+.cellClass {
+   border: 1px solid Black;
+   width: 30px;
+   height : 30px;
+   padding: 0px;
+   margin: 0px;
+}
+
+#mainLogo {
+    margin-bottom: 30px;
+    border: 1px solid black;
+    height: 100px;
+    witdh: 200px;
+}
+
+#status {
+    border: 1px solid black;
+    height: 100px;
+    witdh: 100px;
+}
+
+body {
+    background-color: #caceff;
+}
+
+#menu {
+    /*height: 318px;*/
+    width: 100%;
+    border: 1px solid black;
+}

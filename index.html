@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <script src="javascript/underscore.js"></script>
+    <script src="javascript/jquery-1.11.1.js"></script>
+
+    <script language="JavaScript">
+
+        var colorList = new Array();
+        colorList[0] = '#FFFFFF';
+        colorList[1] = '#FF0000';
+        colorList[2] = '#00FF00';
+        colorList[3] = '#0000FF';
+        colorList[4 ] = '#FFFF00';
+
+        function getColor(index){
+            return colorList[index];
+        }
+
+        function youClickedOn(cell){
+            var colorIndex = $(cell).data("color-index");
+            var nextIndex = (colorIndex + 1) % colorList.length;
+            var nextColor = getColor(nextIndex);
+            // alert(cell.id + " " + colorIndex + " " + nextColor);
+            $(cell).css('background', nextColor);
+            $(cell).data("color-index", nextIndex);
+        }
+
+        $(document).ready(function() {
+            var mainBoard = $("#mainBoard");
+            var noLines = 10;
+            var noCols = 10;
+            var row = $('<tr id=\'row_1\'></tr>');
+            var column, cell, i,j;
+            for(j = 1; j <= noCols; j++) {
+                column = $('<td id=\'column_1_' + j +"'></td>");
+                cell = $('<div id=\'cell_1_' + j +"' onclick = 'youClickedOn(this)' data-color-index = '0'> </div>");
+                cell.addClass('cellClass');
+                cell.css('background', getColor(0));
+                column.append(cell);
+                row.append(column);
+            }
+            // add extra column here
+            column = $('<td id = \'rightSideMenuColumn\' width = \'100%\' rowspan = \''+ noLines +"'></td>");
+            var divForMenu = $("<div id='menu'></div>");
+            $(column).append(divForMenu);
+            row.append(column);
+
+            mainBoard.append(row);
+
+            for (i = 2; i <= noLines; i++) {
+                row = $('<tr id=\'row_' + i + "'></tr>");
+                for(j = 1; j <= noCols; j++) {
+                    column = $('<td id=\'column_' + i + "_"+ j +"'></td>");
+                    cell = $('<div id=\'cell_'+ i +"_" + j +"' onclick = 'youClickedOn(this)' data-color-index = '0'> </div>");
+                    cell.addClass('cellClass');
+                    cell.css('background', getColor(0));
+                    column.append(cell);
+                    row.append(column);
+                }
+                mainBoard.append(row);
+            }
+
+            var cellHeight = parseInt(cell.css("height"));
+            divForMenu.css("height", noLines * (cellHeight + 2) - 2 + "px");
+            var settingsLink = $("Settings");
+            divForMenu.append();
+        });
+
+    </script>
+
+    <div id="mainLogo">
+        <h1>Logo</h1>
+    </div>
+    <table id="mainBoard" cellspacing="0" class="mainBoardClass">
+    </table>
+    <br><hr>
+    <div id="status"> </div>
+</body>
+</html>
