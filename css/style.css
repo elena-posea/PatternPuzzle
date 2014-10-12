@@ -1,4 +1,4 @@
-.mainBoardClass, th, td {
+#mainBoard, th, td {
     border-spacing: 0px;
     border-collapse: collapse;
     padding: 0px;
@@ -31,7 +31,19 @@ body {
 }
 
 #menu {
-    /*height: 318px;*/
+    display: none;
     width: 100%;
     border: 1px solid black;
+}
+
+#patterns{
+   overflow: hidden;
+}
+
+.selected {
+    border: 1px solid red;
+}
+
+.highlight {
+    border: 1px dashed red;
 }
